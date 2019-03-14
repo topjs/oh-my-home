@@ -8,12 +8,14 @@
 "   => Visual mode related
 "   => Moving around, tabs and buffers
 "   => Status line
-"   => Key mappings
 "   => vimgrep searching and cope displaying
 "   => Spell checking
 "   => Misc
 "   => Helper functions
 "   => Souce extended vim script
+"
+"   => All key mappings list
+"
 "
 """"""""""""""""""""""""""""""""""""""""
 
@@ -26,6 +28,9 @@ set history=500
 
 " Define <leader>
 let mapleader=","
+
+" Enable filetype indent
+filetype indent on
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -132,32 +137,6 @@ set laststatus=2
 
 
 """"""""""""""""""""""""""""""""""""""""
-" => Key mappings
-""""""""""""""""""""""""""""""""""""""""
-" Map kj to ESC
-inoremap kj <ESC>
-
-" Map E to the end of current line
-noremap E $
-
-" Map B to the begin of current line
-noremap B ^
-
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap < <><ESC>i
-inoremap { {<CR>}<ESC>O
-"inoremap if  if (){<CR>}<ESC>O
-"inoremap { {}<ESC>i
-
-" Bash like keys for the command line
-cnoremap <C-A> <HOME>
-cnoremap <C-E> <END>
-"cnoremap <C-K> <C-U>
-
-""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """"""""""""""""""""""""""""""""""""""""
 
@@ -177,3 +156,43 @@ cnoremap <C-E> <END>
 """"""""""""""""""""""""""""""""""""""""
 " Source conf for vim plugins
 source /$HOME/.vim/.plugins.vim
+
+
+""""""""""""""""""""""""""""""""""""""""
+" => All key mappings list
+"
+" Key mappings in plugins are listed
+" here in comments line for checking.
+""""""""""""""""""""""""""""""""""""""""
+" Map kj to ESC
+inoremap kj <ESC>
+
+" Map E to the end of current line
+noremap E $
+" Map B to the begin of current line
+noremap B ^
+
+inoremap <leader>sq ''<ESC>i
+inoremap <leader>q ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap < <><ESC>i
+inoremap { {<CR>}<ESC>O
+"inoremap if  if (){<CR>}<ESC>O
+"inoremap { {}<ESC>i
+
+" Bash like keys for the command line
+cnoremap <C-A> <HOME>
+cnoremap <C-E> <END>
+"cnoremap <C-K> <C-U>
+
+" -> <TAB> : Expend snips
+" -> <SHIFT-TAB> : Jump backward 
+" -> <leader>n : NERDTree toggle 
+" -> <leader>t : Tagbar toggle
+" -> kj : quit multiple cursor select
+"
+"
+" -> <leaderl>s : Search current word globally
+" -> <leaderl>f : Find file fuzzily and globally
+" -> <leaderl>g : 'grep' text globally
