@@ -186,13 +186,44 @@ cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
 "cnoremap <C-K> <C-U>
 
-" -> <TAB> : Expend snips
-" -> <SHIFT-TAB> : Jump backward 
-" -> <leader>n : NERDTree toggle 
-" -> <leader>t : Tagbar toggle
-" -> kj : quit multiple cursor select
+" ==== Key bindings inside VIM ===
+" -> <C-]>       : Jump to definition
+" -> <C-[>       : Jump back
+" -> <C-T>       : Jump back
+" -> <C-J>       : Move to downside window
+" -> <C-K>       : Move to upside window
+" -> <C-H>       : Move to right side window
+" -> <C-L>       : Move to left side window
 "
+" 
+" === Key bindings in plugins ====
+" => YCM
+"   -> j           : Go forwards through list
+"   -> J           : Go backwards through list
 "
-" -> <leaderl>s : Search current word globally
-" -> <leaderl>f : Find file fuzzily and globally
-" -> <leaderl>g : 'grep' text globally
+" => UltiSnips
+"   -> <TAB>       : Expend snips
+"   -> <SHIFT-TAB> : Jump backward 
+"
+" => NERDTree
+"   -> <leader>n   : NERDTree toggle 
+"
+" => Tagbar
+"   -> <leader>t   : Tagbar toggle
+"
+" => Multi cursor select
+"   -> kj          : quit multiple cursor select
+"   -> <C-N>       : Select start word under cursor
+"   -> <C-N>       : Select next word under cursor
+"   -> <C-A>       : Select all matched word under cursor
+"   -> <C-P>       : Select previous matched word under cursor
+"   -> <C-X>       : Skip a matched word under cursor
+"
+" => Leaderf
+"   -> <leaderl>f  : Find file fuzzily and globally
+"
+" => CtrlSF
+"   -> <leaderl>g  : 'grep' text globally
+"   -> <leaderl>s  : Search current word globally
+"   -> M in result window : Siwitch result window between normal view and compact view.
+"
