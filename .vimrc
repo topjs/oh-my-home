@@ -14,6 +14,7 @@
 "   => Helper functions
 "   => Souce extended vim script
 "
+"   => Cscope config
 "   => All key mappings list
 "
 "
@@ -112,22 +113,20 @@ set backspace=indent,eol,start
 " => Moving around, tabls, windows and buffers
 """"""""""""""""""""""""""""""""""""""""
 " Smart ways to move between windows
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-H> <C-W>h
-nnoremap <C-L> <C-W>l
-" The following is also workable
-"map <C-H> :wincmd h<CR>
-"map <C-J> :wincmd j<CR>
-"map <C-K> :wincmd k<CR>
-"map <C-L> :wincmd l<CR>
+nnoremap wj <C-W>j
+nnoremap wk <C-W>k
+nnoremap wh <C-W>h
+nnoremap wl <C-W>l
 
-" TODO config for vim tags
-" Map Ctrl+[ to default Ctrl-t shortcus of tags
-nnoremap <C-[> <C-T>
+nnoremap w= <C-W>+
+nnoremap w- <C-W>-
 
-" Find tag files recursively to root
-set tags+=tags;/
+"nnoremap wc <C-W>c
+"nnoremap wq <C-W>q
+"nnoremap ws <C-W>s
+"nnoremap wv <C-W>v
+"nnoremap wq <C-W>q
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -156,6 +155,24 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""
 " Source conf for vim plugins
 source /$HOME/.vim/.plugins.vim
+
+""""""""""""""""""""""""""""""""""""""""
+" => Cscope config
+""""""""""""""""""""""""""""""""""""""""
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -186,11 +203,87 @@ cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
 "cnoremap <C-K> <C-U>
 
+
+"=== Cscope/ctags key mappings ===
+"
+" => ctags
+" Map Ctrl+[ to default Ctrl-t shortcus of tags
+nnoremap <C-[> <C-T>
+" Find tag files up to root recursively 
+set tags+=tags;/
+
+" => cscope
+" NOTE: cscope find command
+" USAGE	:cs find {querytype} {name}
+" 
+" {querytype} corresponds to the actual cscope line
+" interface numbers as well as default nvi commands:
+" 
+" 0 or s: Find this C symbol
+" 1 or g: Find this definition
+" 2 or d: Find functions called by this function
+" 3 or c: Find functions calling this function
+" 4 or t: Find this text string
+" 6 or e: Find this egrep pattern
+" 7 or f: Find this file
+" 8 or i: Find files #including this file
+" 9 or a: Find places where this symbol is assigned a value
+" 
+" For all types, except 4 and 6, leading white space for {name} is
+" removed.  For 4 and 6 there is exactly one space between {querytype}
+" and {name}.  Further white space is included in {name}.
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>
+
+" Using 'CTRL-spacebar' then a search type makes the vim window
+" split horizontally, with search result displayed in
+" the new window.
+
+nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space>a :scs find a <C-R>=expand("<cword>")<CR><CR>
+
+" Hitting CTRL-space *twice* before the search type does a vertical
+" split instead of a horizontal one
+
+nmap <C-Space><C-Space>s
+            \:vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>g
+            \:vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>c
+            \:vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>t
+            \:vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>e
+            \:vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>i
+            \:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-Space><C-Space>d
+            \:vert scs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-Space><C-Space>a
+            \:vert scs find a <C-R>=expand("<cword>")<CR><CR>
+
+
 " ==== Key bindings inside VIM ===
-" -> <C-]>       : Jump to definition
+" -> <C-]>       : Jump to the tag underneath cursor
 " -> <C-[>       : Jump back
 " -> <C-T>       : Jump back
-" -> <C-J>       : Move to downside window
+"
+" -> wj          : Move to downside window
 " -> <C-K>       : Move to upside window
 " -> <C-H>       : Move to right side window
 " -> <C-L>       : Move to left side window
