@@ -48,6 +48,9 @@ Plugin 'kshenoy/vim-signature'
 " => Multiple line selector
 Plugin 'terryma/vim-multiple-cursors'
 
+" Autoload cscope
+Plugin 'vim-scripts/autoload_cscope.vim'
+
 " No use plugin so far
 " Copy from https://github.com/yangyangwithgnu/use_vim_as_ide#2-%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86
 "
@@ -101,7 +104,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-
 
 """"""""""""""""""""""""""""""""""""""""
 " => UltiSnips
