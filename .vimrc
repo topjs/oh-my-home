@@ -206,7 +206,7 @@ cnoremap <C-E> <END>
 " Map Ctrl+[ to default Ctrl-t shortcus of tags
 nnoremap <C-[> <C-T>
 " Find tag files up to root recursively 
-set tags+=tags;/
+set tags=tags;/
 
 " => cscope
 " NOTE: cscope find command
