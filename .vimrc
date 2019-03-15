@@ -113,19 +113,15 @@ set backspace=indent,eol,start
 " => Moving around, tabls, windows and buffers
 """"""""""""""""""""""""""""""""""""""""
 " Smart ways to move between windows
-nnoremap wj <C-W>j
-nnoremap wk <C-W>k
-nnoremap wh <C-W>h
-nnoremap wl <C-W>l
-
-nnoremap w= <C-W>+
-nnoremap w- <C-W>-
-
-"nnoremap wc <C-W>c
-"nnoremap wq <C-W>q
-"nnoremap ws <C-W>s
-"nnoremap wv <C-W>v
-"nnoremap wq <C-W>q
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+" The following is also workable
+"map <C-H> :wincmd h<CR>
+"map <C-J> :wincmd j<CR>
+"map <C-K> :wincmd k<CR>
+"map <C-L> :wincmd l<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""
