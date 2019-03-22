@@ -1,35 +1,46 @@
 #!/bin/sh
 
-CURRENT_DIR=`pwd`
-BACKUP_DIR="$HOME/backup"
-VIMRC="$HOME/.vimrc"
-PLUGINS_DIR="$HOME/.vim/"
-PLUGINS_VIM="$HOME/.vim/.plugins.vim"
+BACKUP_DIR="$HOME/autoconf.backup"
+PWD=`pwd`
 
-# Install required libs
+echo "=====> Installing required packages" 
 sudo apt install ack tmux ctags cmake cscope
 
-echo "Creating backup"
-if [ ! -d "$BACKUP_DIR" ]; then
+echo "=====> Creating backup"
+if [ ! -d $BACKUP_DIR ]; then
     mkdir $BACKUP_DIR
 else
-    rm $BACKUP_DIR/*
+    rm -rf $BACKUP_DIR/*
 fi
 
-echo "Checking .vimrc"
-if [ -f "VIMRC"]; then
-    mv VIMRC $BACKUP_DIR
-else
-    cp CURRENT_DIR/.vimrc $HOME
-fi
+# Append bash aliases to .bash_aliases
+# echo "=====> Appending tmux alias to .bash_aliases"
+# echo ' # tmux config
+# alias tmuxkill="tmux kill-session -t"
+# alias tmuxattach="tmux a -t"
+# alias tmuxnew="tmux new -s"
+# alias tmuxls="tmux ls" ' >> $HOME/.bash_aliases
 
-echo "Checking .bash_aliases"
+echo "=====> Checking .bash_aliases"
 if [ ! -f "$HOME/.bash_aliases" ]; then
     touch $HOME/.bash_aliases
-else
-    # todo  append bash aliases to .bash_aliases
-    # alias tmuxkill="tmux kill-session -t"
-    # alias tmuxattach="tmux a -t"
-    # alias tmuxnew="tmux new -s"
-    # alias tmuxls="tmux ls"
 fi
+
+echo "=====> Checking .vimrc"
+if [ -f $HOME/.vimrc ]; then
+    mv $HOME/.vimrc $BACKUP_DIR
+fi
+cp $PWD/.vimrc $HOME
+
+echo "=====> Checking .vim directory"
+if [ -f $HOME/.vim/ ]; then
+    mkdir $HOME/.vimrc
+fi
+
+echo "=====> Config .plugin.vim"
+if [ -f $HOME/.vim/.plugins.vim ]; then
+    rm $HOME/.vim/.plugins.vim
+fi
+cp $PWD/.plugins.vim $HOME/.vim/
+
+# TODO May add some command here to install plugins silently
