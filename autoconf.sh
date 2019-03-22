@@ -14,12 +14,12 @@ else
 fi
 
 # Append bash aliases to .bash_aliases
-# echo "=====> Appending tmux alias to .bash_aliases"
-# echo ' # tmux config
-# alias tmuxkill="tmux kill-session -t"
-# alias tmuxattach="tmux a -t"
-# alias tmuxnew="tmux new -s"
-# alias tmuxls="tmux ls" ' >> $HOME/.bash_aliases
+echo "=====> Appending tmux alias to .bash_aliases"
+echo ' # tmux config
+alias tmuxkill="tmux kill-session -t"
+alias tmuxattach="tmux a -t"
+alias tmuxnew="tmux new -s"
+alias tmuxls="tmux ls" ' >> $HOME/.bash_aliases
 
 echo "=====> Checking .bash_aliases"
 if [ ! -f "$HOME/.bash_aliases" ]; then
