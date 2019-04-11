@@ -3,19 +3,18 @@
 # personal developing environment, including Tmux, Vim.
 #
 # Note:
-#   1. Running this script in root in order to install
-#      required packages.
+#   1. root privilege is needed at first to install required packages.
 #   2. Some aliases are set fot tmux in .bash_aliases
 #   3. Old config are moved to $HOME/autoconf.backup/
 
-BACKUP_DIR="$HOME/autoconf.backup/"
+BACKUP_DIR="$HOME/configs.old/"
 PWD=`pwd`
 
 echo "=====> Installing required packages ..." 
 sudo apt install ack tmux ctags cmake cscope
 echo "=====> Installing required packages ...[ok]" 
 
-echo -n "=====> Creating autoconf.backup ..."
+echo -n "=====> Creating configs.old ..."
 if [ ! -d $BACKUP_DIR ]; then
     mkdir $BACKUP_DIR
 else
