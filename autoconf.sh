@@ -11,8 +11,9 @@
 BACKUP_DIR="$HOME/autoconf.backup/"
 PWD=`pwd`
 
-echo "=====> Installing required packages" 
+echo "=====> Installing required packages ..." 
 sudo apt install ack tmux ctags cmake cscope
+echo "=====> Installing required packages ...[ok]" 
 
 echo -n "=====> Creating autoconf.backup ..."
 if [ ! -d $BACKUP_DIR ]; then
@@ -50,7 +51,7 @@ if [ -f $HOME/.vim/ ]; then
 fi
 echo -n "[ok]"
 
-echo "=====> Configuring .plugin.vim ..."
+echo "=====> Configuring .plugins.vim ..."
 if [ -f $HOME/.vim/.plugins.vim ]; then
     rm $HOME/.vim/.plugins.vim
 fi
