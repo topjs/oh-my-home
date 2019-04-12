@@ -46,9 +46,9 @@ echo -n "=====> Checking .vim/ directory ..."
 if [ -f $HOME/.vim/ ]; then
     mkdir $HOME/.vim/
 fi
-echo -n "[ok]"
+echo "[ok]"
 
-echo "=====> Configuring .plugins.vim ..."
+echo -n "=====> Configuring .plugins.vim ..."
 if [ -f $HOME/.vim/.plugins.vim ]; then
     rm $HOME/.vim/.plugins.vim
 fi
