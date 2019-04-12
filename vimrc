@@ -150,7 +150,9 @@ set laststatus=2
 " => Souce extended vim script
 """"""""""""""""""""""""""""""""""""""""
 " Source conf for vim plugins
-source /$HOME/.vim/.plugins.vim
+if !empty(glob("/$HOME/.vim/.plugins.vim"))
+    source /$HOME/.vim/.plugins.vim
+endif
 
 """"""""""""""""""""""""""""""""""""""""
 " => Cscope config
