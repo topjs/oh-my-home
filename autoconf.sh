@@ -5,13 +5,14 @@
 # Note:
 #   1. root privilege is needed at first to install required packages.
 #   2. Some aliases are set fot tmux in .bash_aliases
-#   3. Old config are moved to $HOME/autoconf.backup/
+#   3. Old config are moved to $PWD/configs.backup/
 
-BACKUP_DIR="$HOME/configs.old/"
 PWD=`pwd`
+BACKUP_DIR="$PWD/configs.old/"
 
 echo "=====> Installing required packages ..." 
-sudo apt install ack tmux ctags cmake cscope
+sudo apt-get install vim ack tmux ctags cmake cscope\
+    build-essential cmake python3-dev
 echo "=====> Installing required packages ...[ok]" 
 
 echo -n "=====> Creating configs.old ..."
@@ -55,4 +56,36 @@ fi
 cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
 echo "[ok]"
 
-# TODO May add some commands here to install plugins silently
+echo "=====> Installing Vundle ..."
+if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    echo "=====> Installing Vundle ...[ok]"
+else
+    echo "=====> Vundle is already installed ...[ok]"
+fi
+
+echo "=====> Installing plugins for Vim ..."
+echo "This process will take a while, you can take a break ..."
+sleep 5
+vim tmpfile +PluginInstall +qall
+echo "=====> Installing plugins for Vim ...[ok]"
+
+echo "=====> Compiling stuff for YCM and Leaderf ..."
+echo "=====> [1] Compiling stuff for YCM ..."
+cd ~/.vim/bundle/YouCompleteMe
+if (./install.py --clang-completer); then
+    echo "=====> [1] Compiling stuff for YCM ...[ok]"
+else
+    echo "=====> [1] Something wrong happened when compiling YCM ...[ok]"
+fi
+
+echo "=====> [2] Compiling stuff for LeaderF ..."
+cd ~/.vim/bundle/LeaderF
+if (./install.sh); then
+    echo "=====> [2] Compiling stuff for LeaderF ...[ok]"
+else
+    echo "=====> [2] Something wrong happened when compiling LeaderF ...[ok]"
+fi
+echo "=====> Compiling stuff for YCM and Leaderf ...[ok]"
+
+echo "=====> Finish configuring you env. Enjoy! :-)"
