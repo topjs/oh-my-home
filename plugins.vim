@@ -40,7 +40,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
 "Plugin 'kien/ctrlp.vim'
 Plugin 'dyng/ctrlsf.vim'
-Plugin 'yggdroot/leaderf', { 'do': './install.sh' }
+Plugin 'yggdroot/LeaderF', { 'do': './install.sh' }
 
 " VIM marks
 Plugin 'kshenoy/vim-signature'
