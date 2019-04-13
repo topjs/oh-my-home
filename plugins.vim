@@ -17,8 +17,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " => Ultisnips and snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" Handle tab conflict with YCM
-"Plugin 'ervandew/supertab'
 
 " => Color scheme
 Plugin 'altercation/vim-colors-solarized'
@@ -31,7 +29,6 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " => Navigation tree
 Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/nerdcommenter'
 
 " => Tagbar to list all tags
 Plugin 'majutsushi/tagbar'
@@ -54,6 +51,10 @@ Plugin 'vim-scripts/autoload_cscope.vim'
 " No use plugin so far
 " Copy from https://github.com/yangyangwithgnu/use_vim_as_ide#2-%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86
 "
+"Handle tab conflict with YCM
+"Plugin 'ervandew/supertab'
+"
+"Plugin 'scrooloose/nerdcommenter'
 "Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -85,25 +86,7 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_key_list_select_completion = ['j', '<Down>']
 let g:ycm_key_list_previous_completion = ['J', '<Up>']
 let g:ycm_confirm_extra_conf = 1
-" make YCM compatible with UltiSnips (using supertab)
-"let g:SuperTabDefaultCompletionType = '<C-N>'
 
-
-""""""""""""""""""""""""""""""""""""""""
-" => nerdtree git plugin
-""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✚",
-    \ "Staged"    : "✹",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
 
 """"""""""""""""""""""""""""""""""""""""
 " => UltiSnips
