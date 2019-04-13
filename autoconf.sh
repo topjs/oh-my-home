@@ -16,7 +16,7 @@ sudo apt-get install vim ack tmux ctags cmake cscope\
 echo "=====> Installing required packages ...[ok]" 
 
 echo -n "=====> Creating configs.old ..."
-if [ ! -d $BACKUP_DIR ]; then
+if [[ ! -d $BACKUP_DIR ]]; then
     mkdir $BACKUP_DIR
 else
     rm -rf $BACKUP_DIR/*
@@ -25,21 +25,21 @@ echo "[ok]"
 
 # Append bash aliases to .bash_aliases
 echo -n "=====> Checking .bash_aliases ..."
-if [ ! -f "$HOME/.bash_aliases" ]; then
+if [[ ! -f "$HOME/.bash_aliases" ]]; then
     cp $PWD/bash_aliases $HOME/.bash_aliases
 else
     nlines=$(wc -l <$PWD/bash_aliases)
     diff $PWD/bash_aliases <(tail -n $nlines $HOME/.bash_aliases) > /dev/null
-    if [ $? -ne 0 ]; then
+    if [[ $? -ne 0 ]]; then
         cat $PWD/bash_aliases >> $HOME/.bash_aliases
     fi
 fi
 echo "[ok]"
 
 echo -n "=====> Checking .vimrc ..."
-if [ -f $HOME/.vimrc ]; then
+if [[ -f $HOME/.vimrc ]]; then
     diff $HOME/.vimrc $PWD/vimrc
-    if [ $? -ne 0 ]; then
+    if [[ $? -ne 0 ]]; then
         mv $HOME/.vimrc $BACKUP_DIR
         cp $PWD/vimrc $HOME/.vimrc
     # else
@@ -51,15 +51,15 @@ fi
 echo "[ok]"
 
 echo -n "=====> Checking .vim/ directory ..."
-if [ -f $HOME/.vim/ ]; then
+if [[ ! -d $HOME/.vim/ ]]; then
     mkdir $HOME/.vim/
 fi
 echo "[ok]"
 
 echo -n "=====> Configuring .plugins.vim ..."
-if [ -f $HOME/.vim/.plugins.vim ]; then
+if [[ -f $HOME/.vim/.plugins.vim ]]; then
     diff $HOME/.vim/.plugins.vim $PWD/plugins.vim
-    if [ $? -ne 0 ]; then
+    if [[ $? -ne 0 ]]; then
         mv $HOME/.plugins.vim $BACKUP_DIR
         cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
     # else
@@ -71,7 +71,7 @@ fi
 echo "[ok]"
 
 echo "=====> Installing Vundle ..."
-if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
+if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     echo "=====> Installing Vundle ...[ok]"
 else
