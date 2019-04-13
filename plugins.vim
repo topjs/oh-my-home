@@ -142,9 +142,9 @@ let g:tagbar_autofocus=1
 """"""""""""""""""""""""""""""""""""""""
 " => Color scheme
 """"""""""""""""""""""""""""""""""""""""
-colorscheme solarized
-"colorscheme molokai
-"colorscheme phd
+silent! colorscheme solarized
+"silent! colorscheme molokai
+"silent! colorscheme phd
 
 
 """"""""""""""""""""""""""""""""""""""""
