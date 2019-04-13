@@ -38,9 +38,16 @@ echo "[ok]"
 
 echo -n "=====> Checking .vimrc ..."
 if [ -f $HOME/.vimrc ]; then
-    mv $HOME/.vimrc $BACKUP_DIR
+    diff $HOME/.vimrc $PWD/vimrc
+    if [ $? -ne 0 ]; then
+        mv $HOME/.vimrc $BACKUP_DIR
+        cp $PWD/vimrc $HOME/.vimrc
+    # else
+        # Do nothing
+    fi
+else
+    cp $PWD/vimrc $HOME/.vimrc
 fi
-cp $PWD/vimrc $HOME/.vimrc
 echo "[ok]"
 
 echo -n "=====> Checking .vim/ directory ..."
@@ -51,9 +58,16 @@ echo "[ok]"
 
 echo -n "=====> Configuring .plugins.vim ..."
 if [ -f $HOME/.vim/.plugins.vim ]; then
-    rm $HOME/.vim/.plugins.vim
+    diff $HOME/.vim/.plugins.vim $PWD/plugins.vim
+    if [ $? -ne 0 ]; then
+        mv $HOME/.plugins.vim $BACKUP_DIR
+        cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
+    # else
+        # Do nothing
+    fi
+else
+    cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
 fi
-cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
 echo "[ok]"
 
 echo "=====> Installing Vundle ..."
