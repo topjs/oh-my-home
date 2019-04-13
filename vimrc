@@ -195,11 +195,11 @@ inoremap < <><ESC>i
 inoremap { {<CR>}<ESC>O
 "inoremap if  if (){<CR>}<ESC>O
 "inoremap { {}<ESC>i
+" TODO helper functions to handle delete parentheses
 
 " Bash like keys for the command line
 cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
-"cnoremap <C-K> <C-U>
 
 
 "=== Cscope/ctags key mappings ===
