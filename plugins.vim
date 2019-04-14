@@ -7,8 +7,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" => YouCompleteMe
+" => Auto completion
+" YouCompleteMe
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
 
 " => Work with git
 Plugin 'tpope/vim-fugitive'

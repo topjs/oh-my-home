@@ -187,16 +187,6 @@ noremap E $
 " Map B to the begin of current line
 noremap B ^
 
-inoremap <leader>sq ''<ESC>i
-inoremap <leader>q ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap < <><ESC>i
-inoremap { {<CR>}<ESC>O
-"inoremap if  if (){<CR>}<ESC>O
-"inoremap { {}<ESC>i
-" TODO helper functions to handle delete parentheses
-
 " Bash like keys for the command line
 cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
