@@ -38,7 +38,7 @@ echo "[ok]"
 
 echo -n "=====> Checking .vimrc ..."
 if [[ -f $HOME/.vimrc ]]; then
-    diff $HOME/.vimrc $PWD/vimrc
+    diff $HOME/.vimrc $PWD/vimrc > /dev/null
     if [[ $? -ne 0 ]]; then
         mv $HOME/.vimrc $BACKUP_DIR
         cp $PWD/vimrc $HOME/.vimrc
@@ -58,7 +58,7 @@ echo "[ok]"
 
 echo -n "=====> Configuring .plugins.vim ..."
 if [[ -f $HOME/.vim/.plugins.vim ]]; then
-    diff $HOME/.vim/.plugins.vim $PWD/plugins.vim
+    diff $HOME/.vim/.plugins.vim $PWD/plugins.vim > /dev/null
     if [[ $? -ne 0 ]]; then
         mv $HOME/.plugins.vim $BACKUP_DIR
         cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
