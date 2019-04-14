@@ -289,6 +289,10 @@ nmap <C-Space><C-Space>a
 " => NERDTree
 "   -> <leader>n   : NERDTree toggle 
 "
+" => NERDCommenter
+"   -> <C-/>       : Comment
+"   -> <c-\>       : Uncomment
+"
 " => Tagbar
 "   -> <leader>t   : Tagbar toggle
 "
