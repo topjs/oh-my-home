@@ -179,8 +179,18 @@ endif
 " Key mappings in plugins are listed
 " here in comments line for checking.
 """"""""""""""""""""""""""""""""""""""""
+" <leader> is defined as "," in General section
+" let mapleader=","
+
 " Map kj to ESC
 inoremap kj <ESC>
+
+" Save file with leader + S
+nnoremap <leader>s :w<CR>
+inoremap <leader>s <C-C>:w<CR>
+
+" Quit files with leader + Q
+noremap <leader>q :q<CR>
 
 " Map E to the end of current line
 noremap E $
