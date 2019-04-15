@@ -134,7 +134,7 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """"""""""""""""""""""""""""""""""""""""
-
+" There is a Asynchronous Lint Engine plugin
 
 """"""""""""""""""""""""""""""""""""""""
 " => Misc

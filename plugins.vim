@@ -19,6 +19,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
+" => Asynchronous Lint Engine
+Plugin 'w0rp/ale'
+
 " => Color scheme
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
