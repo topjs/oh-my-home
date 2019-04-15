@@ -10,9 +10,13 @@
 PWD=`pwd`
 BACKUP_DIR="$PWD/configs.old/"
 
+echo "=====> Updating packages list ..."
+sudo apt-get update
+echo "=====> Updating packages list ...[ok]"
+
 echo "=====> Installing required packages ..." 
-sudo apt-get install vim ack tmux ctags cmake cscope\
-    build-essential cmake python3-dev
+sudo apt-get -y install -f vim ack tmux ctags cmake cscope\
+    build-essential cmake python3-dev clang
 echo "=====> Installing required packages ...[ok]" 
 
 echo -n "=====> Creating configs.old ..."
