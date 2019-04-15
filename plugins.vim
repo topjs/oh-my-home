@@ -27,6 +27,7 @@ Plugin 'vim-scripts/phd'
 " => VIM user interface
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
 
 " => Navigation tree
 Plugin 'scrooloose/nerdtree'
