@@ -64,7 +64,7 @@ echo -n "=====> Configuring .plugins.vim ..."
 if [[ -f $HOME/.vim/.plugins.vim ]]; then
     diff $HOME/.vim/.plugins.vim $PWD/plugins.vim > /dev/null
     if [[ $? -ne 0 ]]; then
-        mv $HOME/.plugins.vim $BACKUP_DIR
+        mv $HOME/.vim/.plugins.vim $BACKUP_DIR
         cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
     # else
         # Do nothing
