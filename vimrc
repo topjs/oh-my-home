@@ -77,6 +77,10 @@ syntax on
 " Color scheme is defined in .plugin.vim
 set background=dark
 
+if &term == "screen"
+      set t_Co=256
+endif
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Files and backups
