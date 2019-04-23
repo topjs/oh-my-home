@@ -127,6 +127,9 @@ nnoremap <C-L> <C-W>l
 "map <C-K> :wincmd k<CR>
 "map <C-L> :wincmd l<CR>
 
+" Enable buffers hidden
+set hidden
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Status line
