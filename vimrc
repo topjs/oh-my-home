@@ -13,6 +13,7 @@
 "   => Misc
 "   => Helper functions
 "   => Souce extended vim script
+"   => Language support
 "
 "   => Cscope config
 "   => All key mappings list
@@ -160,6 +161,36 @@ set laststatus=2
 if !empty(glob("/$HOME/.vim/.plugins.vim"))
     source /$HOME/.vim/.plugins.vim
 endif
+
+
+""""""""""""""""""""""""""""""""""""""""
+" => Language support
+""""""""""""""""""""""""""""""""""""""""
+" Flagging unecessary white space
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" ==> Python3
+" Python3 support with virtual env
+python3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" Add proper PEP8 indentation support
+au BufNewFile,BufRead *.py
+            \ set tabstop=4
+            \ set softtabstop=4
+            \ set shiftwidth=4
+            \ set textwidth=79
+            \ set expandtab
+            \ set autoindent
+            \ set fileformat=unix
+            \ set encoding=utf-8
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Cscope config

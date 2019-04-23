@@ -108,6 +108,12 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""""""""
+" => ALE
+""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#ale#enabled = 1
+
+
+""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """"""""""""""""""""""""""""""""""""""""
 map <leader>n :NERDTreeToggle<CR>
