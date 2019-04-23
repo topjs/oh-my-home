@@ -40,6 +40,20 @@ else
 fi
 echo "[ok]"
 
+echo -n "=====> Checking .tmux.conf ..."
+if [[ -f $HOME/.tmux.conf ]]; then
+    diff $HOME/.tmux.conf $PWD/tmux.conf > /dev/null
+    if [[ $? -ne 0 ]]; then
+        mv $HOME/.tmux.conf $BACKUP_DIR
+        cp $PWD/tmux.conf $HOME/.tmux.conf
+    # else
+        # Do nothing
+    fi
+else
+    cp $PWD/tmux.conf $HOME/.tmux.conf
+fi
+echo "[ok]"
+
 echo -n "=====> Checking .vimrc ..."
 if [[ -f $HOME/.vimrc ]]; then
     diff $HOME/.vimrc $PWD/vimrc > /dev/null
