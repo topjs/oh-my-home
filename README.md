@@ -1,6 +1,6 @@
 # env-autoconf
 
-This is scripts for auto-configuring personal development environment,
+This are scripts for auto-configuring personal development environment,
 including `Vim, Tmux`.
 
 
@@ -128,7 +128,7 @@ kj          : quit multiple cursor select
 
 Just do the follwing:
 ```bash
-# cd to the directory and run
+# cd to the directory and run:
 ./uninstall.sh
 ```
 NOTE: uninstall.sh doesn't remove all configuration installed above. It will
