@@ -11,7 +11,7 @@ Only Ubuntu is supported for now.
 
 ### Vim
 
-Vim version should higher than 8.0.
+Vim version should be 8.0 or higher.
 
 ### Shell
 
