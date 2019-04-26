@@ -3,6 +3,20 @@
 This are scripts for auto-configuring personal development environment,
 including `Vim, Tmux`.
 
+## Dependencies
+
+### Host OS
+
+Only Ubuntu is supported for now.
+
+### Vim
+
+Vim version should higher than 8.0.
+
+### Shell
+
+`bash` is the defaul shell to run shell scripts.
+
 
 ## How to install?
 
