@@ -10,10 +10,6 @@
 PWD=`pwd`
 BACKUP_DIR="$PWD/configs.old/"
 
-echo "=====> Updating packages list ..."
-sudo apt-get update
-echo "=====> Updating packages list ...[ok]"
-
 echo "=====> Installing required packages ..." 
 sudo apt-get -y install -f vim ack tmux ctags cmake cscope\
     build-essential cmake python3-dev clang
@@ -22,8 +18,6 @@ echo "=====> Installing required packages ...[ok]"
 echo -n "=====> Creating configs.old ..."
 if [[ ! -d $BACKUP_DIR ]]; then
     mkdir $BACKUP_DIR
-else
-    rm -rf $BACKUP_DIR/*
 fi
 echo "[ok]"
 
@@ -35,13 +29,35 @@ else
     nlines=$(wc -l <$PWD/bash_aliases)
     diff $PWD/bash_aliases <(tail -n $nlines $HOME/.bash_aliases) > /dev/null
     if [[ $? -ne 0 ]]; then
+        # Backup .bash_aliases
+        cp $HOME/.bash_aliases $BACKUP_DIR
         cat $PWD/bash_aliases >> $HOME/.bash_aliases
+    # else
+        # Do nothing
+    fi
+fi
+echo "[ok]"
+
+echo -n "=====> Checking .tmux.conf ..."
+if [[ ! -f $HOME/.tmux.conf ]]; then
+    cp $PWD/tmux.conf $HOME/.tmux.conf
+else
+    nlines=$(wc -l <$PWD/tmux.conf)
+    diff $PWD/tmux.conf <(tail -n $nlines $HOME/.tmux.conf) > /dev/null
+    if [[ $? -ne 0 ]]; then
+        # Backup .tmux.conf
+        cp $HOME/.tmux.conf $BACKUP_DIR
+        cat $PWD/tmux.conf >> $HOME/.tmux.conf
+    # else
+        # Do nothing
     fi
 fi
 echo "[ok]"
 
 echo -n "=====> Checking .vimrc ..."
-if [[ -f $HOME/.vimrc ]]; then
+if [[ ! -f $HOME/.vimrc ]]; then
+    cp $PWD/vimrc $HOME/.vimrc
+else
     diff $HOME/.vimrc $PWD/vimrc > /dev/null
     if [[ $? -ne 0 ]]; then
         mv $HOME/.vimrc $BACKUP_DIR
@@ -49,8 +65,6 @@ if [[ -f $HOME/.vimrc ]]; then
     # else
         # Do nothing
     fi
-else
-    cp $PWD/vimrc $HOME/.vimrc
 fi
 echo "[ok]"
 
@@ -61,7 +75,9 @@ fi
 echo "[ok]"
 
 echo -n "=====> Configuring .plugins.vim ..."
-if [[ -f $HOME/.vim/.plugins.vim ]]; then
+if [[ ! -f $HOME/.vim/.plugins.vim ]]; then
+    cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
+else
     diff $HOME/.vim/.plugins.vim $PWD/plugins.vim > /dev/null
     if [[ $? -ne 0 ]]; then
         mv $HOME/.vim/.plugins.vim $BACKUP_DIR
@@ -69,8 +85,6 @@ if [[ -f $HOME/.vim/.plugins.vim ]]; then
     # else
         # Do nothing
     fi
-else
-    cp $PWD/plugins.vim $HOME/.vim/.plugins.vim
 fi
 echo "[ok]"
 

@@ -1,23 +1,20 @@
 """"""""""""""""""""""""""""""""""""""""
+" Maintainer:
+"   Fang Xiaoliang - fangxlmr <fangxlmr@foxmail.com>
+"
 " Sections:
 "   => General
 "   => VIM user interface
 "   => Colors and Fonts
-"   => Files and backups
 "   => Text, tab and intend related
 "   => Visual mode related
-"   => Moving around, tabs and buffers
-"   => Status line
-"   => vimgrep searching and cope displaying
+"   => Moving between windows
 "   => Spell checking
-"   => Misc
 "   => Helper functions
 "   => Souce extended vim script
+"   => Misc
 "
-"   => Cscope config
 "   => All key mappings list
-"
-"
 """"""""""""""""""""""""""""""""""""""""
 
 
@@ -30,8 +27,11 @@ set history=500
 " Define <leader>
 let mapleader=","
 
-" Enable filetype indent
-filetype indent on
+" Enable filetype plugin and indent
+filetype plugin indent on
+
+" Enable buffers hidden
+set hidden
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -66,6 +66,9 @@ set guioptions-=L
 " Also need to disable cursor blink of console
 set gcr=a:block-blinkon0
 
+" Always show the status line
+set laststatus=2
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Color and Fonts
@@ -77,14 +80,10 @@ syntax on
 " Color scheme is defined in .plugin.vim
 set background=dark
 
+" Set color when used in Tmux
 if &term == "screen"
       set t_Co=256
 endif
-
-
-""""""""""""""""""""""""""""""""""""""""
-" => Files and backups
-""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -111,10 +110,14 @@ set backspace=indent,eol,start
 """"""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>"
 
 
 """"""""""""""""""""""""""""""""""""""""
-" => Moving around, tabls, windows and buffers
+" => Moving between windows
 """"""""""""""""""""""""""""""""""""""""
 " Smart ways to move between windows
 nnoremap <C-J> <C-W>j
@@ -129,38 +132,76 @@ nnoremap <C-L> <C-W>l
 
 
 """"""""""""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-
-
-""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """"""""""""""""""""""""""""""""""""""""
 " There is a Asynchronous Lint Engine plugin
-
-""""""""""""""""""""""""""""""""""""""""
-" => Misc
-""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""
 " => Helper funciton
 """"""""""""""""""""""""""""""""""""""""
+function! CmdLine(str)
+        call feedkeys(":" . a:str)
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'gv'
+        call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""
 " => Souce extended vim script
 """"""""""""""""""""""""""""""""""""""""
-" Source conf for vim plugins
+" ==> Source .plugins.vim for plugins
 if !empty(glob("/$HOME/.vim/.plugins.vim"))
     source /$HOME/.vim/.plugins.vim
 endif
 
+" TODO
+" ==> Source filetypes.vim for language support
+" Flagging unecessary white space
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" ==> Python3
+" Python3 support with virtual env
+python3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" Add proper PEP8 indentation support
+au BufNewFile,BufRead *.py
+            \ set tabstop=4
+            \ set softtabstop=4
+            \ set shiftwidth=4
+            \ set textwidth=79
+            \ set expandtab
+            \ set autoindent
+            \ set fileformat=unix
+            \ set encoding=utf-8
+
+
 """"""""""""""""""""""""""""""""""""""""
-" => Cscope config
+" => Misc
 """"""""""""""""""""""""""""""""""""""""
+" ==> Cscope config
 if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=0
@@ -179,13 +220,11 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""
 " => All key mappings list
-"
-" Key mappings in plugins are listed
-" here in comments line for checking.
 """"""""""""""""""""""""""""""""""""""""
-" <leader> is defined as "," in General section
-" let mapleader=","
+" Key mappings in plugins are also listed
+" here in terms of comments for checking.
 
+" ==> Key mappings inside VIM
 " Map kj to ESC
 inoremap kj <ESC>
 
@@ -198,16 +237,23 @@ noremap B ^
 cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
 
-
-"=== Cscope/ctags key mappings ===
+" -> let mapleader=","
+" -> <C-]>       : Jump to the tag underneath cursor
+" -> <C-[>       : Jump back
+" -> <C-T>       : Jump back
 "
-" => ctags
+" -> <C-J>       : Move to downside window
+" -> <C-K>       : Move to upside window
+" -> <C-H>       : Move to right side window
+" -> <C-L>       : Move to left side window
+
+" ==> ctags
 " Map Ctrl+[ to default Ctrl-t shortcus of tags
 nnoremap <C-[> <C-T>
 " Find tag files up to root recursively 
 set tags=tags;/
 
-" => cscope
+" ==> cscope
 " NOTE: cscope find command
 " USAGE	:cs find {querytype} {name}
 " 
@@ -273,37 +319,30 @@ nmap <C-Space><C-Space>a
             \:vert scs find a <C-R>=expand("<cword>")<CR><CR>
 
 
-" ==== Key bindings inside VIM ===
-" -> <C-]>       : Jump to the tag underneath cursor
-" -> <C-[>       : Jump back
-" -> <C-T>       : Jump back
-"
-" -> wj          : Move to downside window
-" -> <C-K>       : Move to upside window
-" -> <C-H>       : Move to right side window
-" -> <C-L>       : Move to left side window
-"
-" 
-" === Key bindings in plugins ====
-" => YCM
+" ==> Key mappings for plugins
+" ===> YCM
 "   -> j           : Go forwards through list
 "   -> J           : Go backwards through list
 "
-" => UltiSnips
+" ===> UltiSnips
 "   -> <TAB>       : Expend snips
 "   -> <SHIFT-TAB> : Jump backward 
 "
-" => NERDTree
+" ===> NERDTree
 "   -> <leader>n   : NERDTree toggle 
 "
-" => NERDCommenter
-"   -> <C-/>       : Comment
-"   -> <c-\>       : Uncomment
-"
-" => Tagbar
+" ===> Tagbar
 "   -> <leader>t   : Tagbar toggle
 "
-" => Multi cursor select
+" ===> CtrlSF
+"   -> <leaderl>g  : 'grep' text globally
+"   -> <leaderl>s  : Search current word globally
+"   -> M in result window : Siwitch result window between normal view and compact view.
+"
+" ===> Leaderf
+"   -> <leaderl>f  : Find file fuzzily and globally
+"
+" ===> Multi cursor select
 "   -> kj          : quit multiple cursor select
 "   -> <C-N>       : Select start word under cursor
 "   -> <C-N>       : Select next word under cursor
@@ -311,11 +350,6 @@ nmap <C-Space><C-Space>a
 "   -> <C-P>       : Select previous matched word under cursor
 "   -> <C-X>       : Skip a matched word under cursor
 "
-" => Leaderf
-"   -> <leaderl>f  : Find file fuzzily and globally
-"
-" => CtrlSF
-"   -> <leaderl>g  : 'grep' text globally
-"   -> <leaderl>s  : Search current word globally
-"   -> M in result window : Siwitch result window between normal view and compact view.
-"
+" ===> NERDCommenter
+"   -> <C-/>       : Comment
+"   -> <c-\>       : Uncomment
