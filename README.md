@@ -1,6 +1,6 @@
 # env-autoconf
 
-This are scripts for auto-configuring personal development environment,
+This repo contains scripts for auto-configuring personal development environment,
 including `Vim, Tmux`.
 
 ## Dependencies
@@ -23,11 +23,10 @@ Vim version should be 8.0 or higher.
 You may want to update package information before installation by doing
 `sudo apt-get update`.
 
-In your `home` directory, simply run the following shell commands in terminal:
+To install, simply run the following shell commands in your terminal:
 ```bash
-git clone https://github.com/fangxlmr/autoconf
-cd autoconf
-./install.sh
+git clone https://github.com/fangxlmr/autoconf ~
+~/autoconf/install.sh
 ```
 
 This may take a while if you install it first time becuase there are a number
