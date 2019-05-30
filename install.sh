@@ -98,7 +98,7 @@ function main {
 
     if [[ $vim_level != "False" ]]; then
         echo "[$MODULE] Installing Vim..."
-        # TODO: Calling install.sh in Vim module.
+        $MODULES_DIR/vim.m/install.sh $vim_level
         echo "[$MODULE] Installing Vim...[ok]"
     fi
 

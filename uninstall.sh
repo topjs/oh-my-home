@@ -97,7 +97,7 @@ function main {
 
     if [[ $vim = "True" ]]; then
         echo "[$MODULE] Uninstalling Vim..."
-        # TODO: Calling uninstall.sh in Vim module.
+        $MODULES_DIR/vim.m/uninstall.sh
         echo "[$MODULE] Uninstalling Vim...[ok]"
     fi
 
