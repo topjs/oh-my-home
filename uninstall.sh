@@ -103,7 +103,7 @@ function main {
 
     if [[ $tmux = "True" ]]; then
         echo "[$MODULE] Uninstalling Tmux..."
-        # TODO: Calling uninstall.sh in Tmux module.
+        $MODULES_DIR/tmux.m/uninstall.sh
         echo "[$MODULE] Uninstalling Tmux...[ok]"
     fi
 

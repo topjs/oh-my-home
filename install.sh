@@ -104,7 +104,7 @@ function main {
 
     if [[ $tmux = "True" ]]; then
         echo "[$MODULE] Installing Tmux..."
-        # TODO: Calling install.sh in Tmux module.
+        $MODULES_DIR/tmux.m/install.sh
         echo "[$MODULE] Installing Tmux...[ok]"
     fi
 
