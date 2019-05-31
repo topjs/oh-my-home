@@ -110,7 +110,7 @@ function main {
 
     if [[ $zsh = "True" ]]; then
         echo "[$MODULE] Installing zsh..."
-        # TODO: Calling install.sh in zsh module.
+        $MODULES_DIR/zsh.m/install.sh
         echo "[$MODULE] Installing zsh...[ok]"
     fi
 }

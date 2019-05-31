@@ -109,7 +109,7 @@ function main {
 
     if [[ $zsh = "True" ]]; then
         echo "[$MODULE] Uninstalling zsh..."
-        # TODO: Calling uninstall.sh in zsh module.
+        $MODULES_DIR/zsh.m/uninstall.sh
         echo "[$MODULE] Uninstalling zsh...[ok]"
     fi
 }
