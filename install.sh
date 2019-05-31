@@ -92,8 +92,9 @@ function main {
 
     if [[ $all = "True" ]]; then
         echo "[$MODULE] Installing all modules..."
-        # TODO: Calling install.sh in all modules.
-        echo "[$MODULE] Installing all modules...[ok]"
+        vim_level="advanced"
+        tmux=True
+        zsh=True
     fi
 
     if [[ $vim_level != "False" ]]; then

@@ -91,8 +91,9 @@ function main {
 
     if [[ $all = "True" ]]; then
         echo "[$MODULE] Uninstalling all modules..."
-        # TODO: Calling uninstall.sh in all modules.
-        echo "[$MODULE] Uninstalling all modules...[ok]"
+        vim=True
+        tmux=True
+        zsh=True
     fi
 
     if [[ $vim = "True" ]]; then
