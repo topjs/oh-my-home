@@ -32,9 +32,6 @@ set hidden
 """"""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """"""""""""""""""""""""""""""""""""""""
-" Highlight current line
-set cursorline
-
 " Disable scrollbars
 set guioptions-=r
 set guioptions-=R
