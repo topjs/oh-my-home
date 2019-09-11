@@ -154,9 +154,6 @@ endif
 cnoremap <C-A> <HOME>
 cnoremap <C-E> <END>
 
-" Map Ctrl+[ to default Ctrl-t shortcus of tags
-nnoremap <C-[> <C-T>
-
 
 """"""""""""""""""""""""""""""""""""""""
 " => All key mappings list
@@ -198,9 +195,6 @@ nnoremap <C-[> <C-T>
 " " Bash like keys for the command line
 " cnoremap <C-A> <HOME>
 " cnoremap <C-E> <END>
-"
-" " Map Ctrl+[ to default Ctrl-t shortcus of tags
-" nnoremap <C-[> <C-T>
 "
 "
 " ==> Advanced key mappings

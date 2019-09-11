@@ -141,9 +141,6 @@ noremap B ^
 " cnoremap <C-A> <HOME>
 " cnoremap <C-E> <END>
 "
-" " Map Ctrl+[ to default Ctrl-t shortcus of tags
-" nnoremap <C-[> <C-T>
-"
 "
 " ==> Advanced key mappings
 "
