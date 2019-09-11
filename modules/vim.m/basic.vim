@@ -57,6 +57,8 @@ if &term == "screen"
       set t_Co=256
 endif
 
+set background=dark
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Text, tab and indentation related

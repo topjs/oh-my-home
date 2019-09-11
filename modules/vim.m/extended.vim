@@ -48,9 +48,6 @@ set gcr=a:block-blinkon0
 " Always show the status line
 set laststatus=2
 
-" Color scheme is defined in .plugin.vim
-set background=dark
-
 
 """"""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
