@@ -58,8 +58,6 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Vim color scheme
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'vim-scripts/phd'
 
 " Tmux interface
 Plugin 'edkolev/tmuxline.vim'
@@ -147,9 +145,7 @@ let g:airline_theme='simple'
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 
-silent! colorscheme solarized
-"silent! colorscheme molokai
-"silent! colorscheme phd
+"silent! colorscheme solarized
 
 
 """"""""""""""""""""""""""""""""""""""""
