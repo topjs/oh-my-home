@@ -37,7 +37,7 @@ export BACKUP_DIR="$SCRIPT_DIR/configs.old"
 # Some util functions.
 export UTILS_DIR="$SCRIPT_DIR/utils"
 
-function usage {
+usage() {
 echo "./install.sh (OPTION)
 
 DESCRIPTION
@@ -61,7 +61,7 @@ DESCRIPTION
         output version information and exit"
 }
 
-function main {
+main() {
     # Option flags.
     all=False
     vim_level=False

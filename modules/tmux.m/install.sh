@@ -32,7 +32,7 @@ TMUX_DIR="$HOME_DIR"
 FROM_TMUX_FILE="$SCRIPT_DIR/tmux.conf"
 TO_TMUX_FILE="$TMUX_DIR/.tmux.conf"
 
-function do_install {
+do_install() {
     # Check if module exsits beforehand.
     status=$(do_search $MODULE)
     if [[ $status != "0" ]]; then

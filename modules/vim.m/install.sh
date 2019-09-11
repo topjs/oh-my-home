@@ -69,16 +69,16 @@ TO_BASIC_FILE="$HOME_DIR/.vimrc"
 TO_EXTENDED_FILE="$VIM_DIR/.extended.vim"
 TO_ADVANCED_FILE="$VIM_DIR/.plugins.vim"
 
-function do_install_basic {
+do_install_basic() {
     do_cover $FROM_BASIC_FILE $TO_BASIC_FILE
 }
 
-function do_install_extended {
+do_install_extended() {
     do_cover $FROM_BASIC_FILE $TO_BASIC_FILE
     do_cover $FROM_EXTENDED_FILE $TO_EXTENDED_FILE
 }
 
-function do_install_advanced {
+do_install_advanced() {
     do_cover $FROM_BASIC_FILE $TO_BASIC_FILE
     do_cover $FROM_EXTENDED_FILE $TO_EXTENDED_FILE
     do_cover $FROM_ADVANCED_FILE $TO_ADVANCED_FILE
@@ -114,7 +114,7 @@ function do_install_advanced {
     fi
 }
 
-function do_install {
+do_install() {
     level=$1
 
     # Check if module exsits beforehand.

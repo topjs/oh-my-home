@@ -32,7 +32,7 @@ ZSH_DIR="$HOME_DIR"
 FROM_ZSHRC_FILE="$SCRIPT_DIR/zshrc"
 TO_ZSHRC_FILE="$ZSH_DIR/.zshrc"
 
-function do_uninstall {
+do_uninstall() {
     # Check if module has been installed beforehand.
     status=$(do_search $MODULE)
     if [[ $status = "0" ]]; then

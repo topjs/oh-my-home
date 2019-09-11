@@ -26,7 +26,7 @@
 # It should be called in form of `do_cover <src> <dest>` where <src> is source
 # file and <dest> is destination file. If the <dest> doesn't exist, it will create
 # all necessary directory to hold <src>.
-function do_cover {
+do_cover() {
     src=$1
     dest=$2
 
@@ -46,7 +46,7 @@ function do_cover {
 # It should be called in form of `do_cover <src> <dest>` where <src> is source
 # file and <dest> is destination file. If the <dest> doesn't exist, it will create
 # all necessary directory to hold <src>.
-function do_append {
+do_append() {
     src=$1
     dest=$2
 
@@ -69,7 +69,7 @@ function do_append {
 # This function searchs status of the module in modules.info.
 # It should be called in form of `do_search <module_name>` where <module_name>
 # should be replaced with your module name.
-function do_search {
+do_search() {
     # Target module
     module_name=$1
 
@@ -83,7 +83,7 @@ function do_search {
 # This function set status of the module to the new one in modules.info.
 # It should be called in form of `do_replace <module_name> <new_status>`
 # where all arguments should be replaced with yours.
-function do_replace {
+do_replace() {
     # Target module
     module_name=$1
     new_status=$2

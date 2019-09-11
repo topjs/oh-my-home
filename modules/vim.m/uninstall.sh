@@ -34,7 +34,7 @@ TO_BASIC_FILE="$HOME_DIR/.vimrc"
 TO_EXTENDED_FILE="$VIM_DIR/.extended.vim"
 TO_ADVANCED_FILE="$VIM_DIR/.plugins.vim"
 
-function do_uninstall_basic {
+do_uninstall_basic() {
     if [[ -f $BACKUP_DIR/.vimrc ]]; then
         cp $BACKUP_DIR/.vimrc $HOME_DIR 2>/dev/null
     else
@@ -42,17 +42,17 @@ function do_uninstall_basic {
     fi
 }
 
-function do_uninstall_extended {
+do_uninstall_extended() {
     do_uninstall_basic
     rm $TO_EXTENDED_FILE
 }
 
-function do_uninstall_advanced {
+do_uninstall_advanced() {
     do_uninstall_extended
     rm $TO_ADVANCED_FILE
 }
 
-function do_uninstall {
+do_uninstall() {
     # Check if module exsits beforehand.
     status=$(do_search $MODULE)
     if [[ $status = "0" ]]; then

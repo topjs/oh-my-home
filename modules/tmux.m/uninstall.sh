@@ -32,7 +32,7 @@ TMUX_DIR="$HOME_DIR"
 FROM_TMUX_FILE="$TMUX_DIR/tmux.conf"
 TO_TMUX_FILE="$HOME_DIR/.tmux.conf"
 
-function do_uninstall {
+do_uninstall() {
     # Check if module has been installed beforehand.
     status=$(do_search $MODULE)
     if [[ $status = "0" ]]; then

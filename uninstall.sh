@@ -36,7 +36,7 @@ export BACKUP_DIR="$SCRIPT_DIR/configs.old"
 # Some util functions.
 export UTILS_DIR="$SCRIPT_DIR/utils"
 
-function usage {
+usage() {
 echo "./uninstall.sh (OPTION)
 
 DESCRIPTION
@@ -60,7 +60,7 @@ DESCRIPTION
         output version information and exit"
 }
 
-function main {
+main() {
     # Uninstall flags.
     all=False
     vim=False
