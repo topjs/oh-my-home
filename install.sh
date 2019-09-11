@@ -33,7 +33,8 @@ export MODULES_DIR="$SCRIPT_DIR/modules"
 # User home directory.
 export HOME_DIR=$HOME
 # Backup directory to store old configs.
-export BACKUP_DIR="$SCRIPT_DIR/configs.old"
+export BACKUP_DIR="$SCRIPT_DIR/backup"
+export CACHE_DIR="$SCRIPT_DIR/cache"
 # Some util functions.
 export UTILS_DIR="$SCRIPT_DIR/utils"
 
@@ -61,12 +62,20 @@ DESCRIPTION
         output version information and exit"
 }
 
+prepare() {
+    mkdir $BACKUP_DIR 1>/dev/null 2>&1
+    mkdir $CACHE_DIR 1>/dev/null 2>&1
+}
+
 main() {
     # Option flags.
     all=False
     vim_level=False
     tmux=False
     zsh=False
+
+    # Prepare before installation.
+    prepare()
 
     # Set valid command line options.
     if ! options=$(getopt -u -o AVh -l all,vim:,tmux,zsh,version,help  -- "$@"); then
