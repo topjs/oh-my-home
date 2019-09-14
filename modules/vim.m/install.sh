@@ -103,6 +103,7 @@ do_install_advanced() {
         echo "[$MODULE] Compiling stuff of YCM...[ok]"
     else
         echo "[$MODULE] Something wrong happened when compiling YCM...[ok]"
+        fail=1
     fi
 
     echo "[$MODULE] Compiling stuff of LeaderF..."
@@ -111,7 +112,10 @@ do_install_advanced() {
         echo "[$MODULE] Compiling stuff of LeaderF...[ok]"
     else
         echo "[$MODULE] Something wrong happened when compiling LeaderF...[ok]"
+        fail=1
     fi
+
+    return $fail
 }
 
 do_install() {
@@ -147,7 +151,10 @@ do_install() {
         esac
 
         # Update module info after installation.
-        do_replace $MODULE $level
+        ret=$?
+        if [[ $ret -eq 0 ]]; then
+            do_replace $MODULE $level
+        fi
     fi
 }
 
