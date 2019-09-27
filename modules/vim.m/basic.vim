@@ -29,6 +29,9 @@ let mapleader=","
 " Enable filetype plugin and indent
 filetype plugin indent on
 
+" Enable mouse operation
+set mouse=a
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => VIM user interface
