@@ -42,6 +42,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
+" Rust-lang support
+Plugin 'rust-lang/rust.vim'
+
 
 """"""""""""""""""""""""""""""""""""""""
 " => Work with git
