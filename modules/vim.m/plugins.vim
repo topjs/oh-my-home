@@ -35,7 +35,7 @@ Plugin 'VundleVim/Vundle.vim'
 " => Auto completion
 """"""""""""""""""""""""""""""""""""""""
 " Code auto-completion
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 
 " Code snippets
@@ -124,7 +124,7 @@ let g:ycm_key_list_previous_completion = ['J', '<Up>']
 let g:ycm_confirm_extra_conf = 1
 
 " ==> UltiSnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" Trigger configuration. Do not use <tab> if you use https://github.com/ycm-core/YouCompleteMe.
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
