@@ -19,8 +19,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-AUTHOR="Fang Xiaoliang <fangxlmr@foxmail.com>"
-
 # Each script has it's own absolute script directory.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
