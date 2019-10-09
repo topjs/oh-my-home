@@ -19,19 +19,13 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Each script has it's own absolute script directory.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+#-------------------- Load config --------------------
 
-# The following varialbles would be refered in subscripts.
-# Directory that all modules located in.
-export MODULES_DIR="$SCRIPT_DIR/modules"
-# User home directory.
-export HOME_DIR=$HOME
-# Backup directory to store old configs.
-export BACKUP_DIR="$SCRIPT_DIR/backup"
-export CACHE_DIR="$SCRIPT_DIR/cache"
-# Some util functions.
-export UTILS_DIR="$SCRIPT_DIR/utils"
+# Top dir of the whole repo.
+TOP_DIR="$(pwd)"
+
+# Load default config
+. "$TOP_DIR/config/default.sh"
 
 usage() {
 echo "./install.sh (OPTION)
