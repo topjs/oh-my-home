@@ -20,9 +20,6 @@
 #
 
 AUTHOR="Fang Xiaoliang <fangxlmr@foxmail.com>"
-# Each module has a module name for logging.
-MODULE="MAIN"
-VERSION="0.0.2"
 
 # Each script has it's own absolute script directory.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
