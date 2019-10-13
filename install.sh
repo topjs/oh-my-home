@@ -27,6 +27,11 @@ TOP_DIR="$(pwd)"
 # Load default config
 . "$TOP_DIR/config/default.sh"
 
+#-------------------- Load utils --------------------
+
+# Load logger.
+. "$UTILS_DIR/log.sh"
+
 usage() {
 echo "./install.sh (OPTION)
 
