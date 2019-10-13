@@ -35,17 +35,15 @@ TOP_DIR="$(pwd)"
 # Load args for parsing command line options.
 . "$UTILS_DIR/args.sh"
 
-prepare() {
-    mkdir $BACKUP_DIR 1>/dev/null 2>&1
-    mkdir $CACHE_DIR 1>/dev/null 2>&1
-}
+# Load checker.
+. "$UTILS_DIR/check.sh"
 
 main() {
     # Init options first.
     ArgsInit
 
-    # Do preparation.
-    prepare
+    # Check before install.
+    Check
 
     # Parse args.
     ArgsParse $@
