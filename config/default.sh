@@ -16,3 +16,4 @@ CACHE_DIR="$TOP_DIR/cache"
 # Some util functions.
 UTILS_DIR="$TOP_DIR/utils"
 
+VERSION="0.0.2"
