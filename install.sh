@@ -32,29 +32,8 @@ TOP_DIR="$(pwd)"
 # Load logger.
 . "$UTILS_DIR/log.sh"
 
-usage() {
-echo "./install.sh (OPTION)
-
-DESCRIPTION
-    Install configs for some software to provide a better user experience.
-
-    Mandatory arguments to long options are mandatory for short options too.
-
-    -A, --all
-        install all modules
-
-    --vim=LEVEL
-        install specified LEVEL config for Vim where LEVEL should be one of \"basic\", \"extened\" and \"advanced\"
-
-    --tmux
-        install config for Tmux
-
-    -h, --help
-        display this help and exit
-
-    -V, --version
-        output version information and exit"
-}
+# Load args for parsing command line options.
+. "$UTILS_DIR/args.sh"
 
 prepare() {
     mkdir $BACKUP_DIR 1>/dev/null 2>&1
@@ -62,61 +41,14 @@ prepare() {
 }
 
 main() {
-    # Option flags.
-    all=False
-    vim_level=False
-    tmux=False
-    zsh=False
+    # Init options first.
+    ArgsInit
 
-    # Prepare before installation.
-    prepare()
+    # Do preparation.
+    prepare
 
-    # Set valid command line options.
-    if ! options=$(getopt -u -o AVh -l all,vim:,tmux,zsh,version,help  -- "$@"); then
-        # something went wrong, getopt will put out an error message for us
-        exit 1
-    fi
-    set -- $options
-
-    # Parsing arguments passed by command line.
-    while [ $# -gt 0 ]; do
-        case $1 in
-            -A|--all) all=True;;
-            -V|--version) echo "$VERSION";;
-            -h|--help) usage;;
-            --vim) vim_level="$2"; shift;;
-            --tmux) tmux=True;;
-            --zsh) zsh=True;;
-            (--) shift; break;;
-            (*) break;;
-        esac
-        shift
-    done
-
-    if [[ $all = "True" ]]; then
-        echo "[$MODULE] Installing all modules..."
-        vim_level="advanced"
-        tmux=True
-        zsh=True
-    fi
-
-    if [[ $vim_level != "False" ]]; then
-        echo "[$MODULE] Installing Vim..."
-        $MODULES_DIR/vim.m/install.sh $vim_level
-        echo "[$MODULE] Installing Vim...[ok]"
-    fi
-
-    if [[ $tmux = "True" ]]; then
-        echo "[$MODULE] Installing Tmux..."
-        $MODULES_DIR/tmux.m/install.sh
-        echo "[$MODULE] Installing Tmux...[ok]"
-    fi
-
-    if [[ $zsh = "True" ]]; then
-        echo "[$MODULE] Installing zsh..."
-        $MODULES_DIR/zsh.m/install.sh
-        echo "[$MODULE] Installing zsh...[ok]"
-    fi
+    # Parse args.
+    ArgsParse $@
 }
 
 # Run main function finally to install modules.
