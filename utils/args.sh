@@ -20,7 +20,7 @@
 #
 
 ArgsUsage() {
-echo "./install.sh (OPTION)
+LogInfo "./install.sh (OPTION)
 
 DESCRIPTION
     Install configs for some software to provide a better user experience.
@@ -62,7 +62,7 @@ ArgsParse() {
     while [ $# -gt 0 ]; do
         case $1 in
             -A|--all) all=True;;
-            -V|--version) echo "$VERSION";;
+            -V|--version) LogInfo "$VERSION";;
             -h|--help) ArgsUsage;;
             --vim) vim_level="$2"; shift;;
             --tmux) tmux=True;;
@@ -74,27 +74,27 @@ ArgsParse() {
     done
 
     if [[ $all = "True" ]]; then
-        echo "[$MODULE] Installing all modules..."
+        LogInfo "Installing all modules..."
         vim_level="advanced"
         tmux=True
         zsh=True
     fi
 
     if [[ $vim_level != "False" ]]; then
-        echo "[$MODULE] Installing Vim..."
+        LogInfo "Installing Vim..."
         # $MODULES_DIR/vim.m/install.sh $vim_level
-        echo "[$MODULE] Installing Vim...[ok]"
+        LogInfo "Installing Vim...[ok]"
     fi
 
     if [[ $tmux = "True" ]]; then
-        echo "[$MODULE] Installing Tmux..."
+        LogInfo "Installing Tmux..."
         # $MODULES_DIR/tmux.m/install.sh
-        echo "[$MODULE] Installing Tmux...[ok]"
+        LogInfo "Installing Tmux...[ok]"
     fi
 
     if [[ $zsh = "True" ]]; then
-        echo "[$MODULE] Installing zsh..."
+        LogInfo "Installing zsh..."
         # $MODULES_DIR/zsh.m/install.sh
-        echo "[$MODULE] Installing zsh...[ok]"
+        LogInfo "Installing zsh...[ok]"
     fi
 }
