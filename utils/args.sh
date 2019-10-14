@@ -82,19 +82,19 @@ ArgsParse() {
 
     if [[ $vim_level != "False" ]]; then
         LogInfo "Installing Vim..."
-        # $MODULES_DIR/vim.m/install.sh $vim_level
+        $MODULES_DIR/vim.m/install.sh $vim_level
         LogInfo "Installing Vim...[ok]"
     fi
 
     if [[ $tmux = "True" ]]; then
         LogInfo "Installing Tmux..."
-        # $MODULES_DIR/tmux.m/install.sh
+        $MODULES_DIR/tmux.m/install.sh
         LogInfo "Installing Tmux...[ok]"
     fi
 
     if [[ $zsh = "True" ]]; then
         LogInfo "Installing zsh..."
-        # $MODULES_DIR/zsh.m/install.sh
+        $MODULES_DIR/zsh.m/install.sh
         LogInfo "Installing zsh...[ok]"
     fi
 }
