@@ -20,25 +20,25 @@
 #
 
 Log() {
-    echo $@
+    echo "$@"
 }
 
 LogDebug() {
-    Log "[DEBUG]" $@
+    Log "[DEBUG] $@"
 }
 
 LogInfo() {
-    Log "[INFO ]" $@
+    Log "[INFO ] $@"
 }
 
 LogWarn() {
-    Log "[WARN ]" $@
+    Log "[WARN ] $@"
 }
 
 LogError() {
-    Log "[ERROR]" $@
+    Log "[ERROR] $@"
 }
 
 LogFatal() {
-    Log "[FATAL]" $@
+    Log "[FATAL] $@"
 }
