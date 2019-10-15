@@ -44,12 +44,6 @@ DESCRIPTION
 }
 
 ArgsInit() {
-    # Init option flags.
-    all=False
-    vim_level=False
-    tmux=False
-    zsh=False
-
     # Set valid options.
     if ! options=$(getopt -u -o AVh -l all,vim:,tmux,zsh,version,help  -- "$@"); then
         # something went wrong, getopt will put out an error message for us
@@ -59,40 +53,45 @@ ArgsInit() {
 }
 
 ArgsParse() {
+    local all=
+    local vim_level=
+    local tmux=
+    local zsh=
+
     while [ $# -gt 0 ]; do
         case $1 in
-            -A|--all) all=True;;
+            -A|--all) all="y";;
             -V|--version) LogInfo "$VERSION";;
             -h|--help) ArgsUsage;;
             --vim) vim_level="$2"; shift;;
-            --tmux) tmux=True;;
-            --zsh) zsh=True;;
+            --tmux) tmux="y";;
+            --zsh) zsh="y";;
             (--) shift; break;;
             (*) break;;
         esac
         shift
     done
 
-    if [[ $all = "True" ]]; then
+    if [ "x$all" = "xy" ]; then
         LogInfo "Installing all modules..."
         vim_level="advanced"
-        tmux=True
-        zsh=True
+        tmux="y"
+        zsh="y"
     fi
 
-    if [[ $vim_level != "False" ]]; then
+    if [ "x$vim_level" != "x" ]; then
         LogInfo "Installing Vim..."
         $MODULES_DIR/vim.m/install.sh $vim_level
         LogInfo "Installing Vim...[ok]"
     fi
 
-    if [[ $tmux = "True" ]]; then
+    if [ "x$tmux" = "xy" ]; then
         LogInfo "Installing Tmux..."
         $MODULES_DIR/tmux.m/install.sh
         LogInfo "Installing Tmux...[ok]"
     fi
 
-    if [[ $zsh = "True" ]]; then
+    if [ "x$zsh" = "xy" ]; then
         LogInfo "Installing zsh..."
         $MODULES_DIR/zsh.m/install.sh
         LogInfo "Installing zsh...[ok]"
