@@ -52,12 +52,28 @@ ArgsInit() {
     set -- $options
 }
 
+ArgsCheckCount() {
+    local count=$1
+    if [ $count = 0 ]; then
+        LogError "Not enough arguments passed in."
+        ArgsUsage
+        exit 1
+    else
+        LogInfo "Get $count arguments passed in."
+    fi
+}
+
 ArgsParse() {
+    local argcount=$#
     local all=
     local vim_level=
     local tmux=
     local zsh=
 
+    # Check if we have enough args passed in.
+    ArgsCheckCount $argcount
+
+    LogInfo "Parsing $argcount arguments..."
     while [ $# -gt 0 ]; do
         case $1 in
             -A|--all) all="y";;
