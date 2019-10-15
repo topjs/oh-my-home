@@ -73,6 +73,9 @@ ArgsParse() {
     # Check if we have enough args passed in.
     ArgsCheckCount $argcount
 
+    # Init flags before parsing args.
+    ArgsInit
+
     LogInfo "Parsing $argcount arguments..."
     while [ $# -gt 0 ]; do
         case $1 in

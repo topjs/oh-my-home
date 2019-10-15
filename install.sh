@@ -39,9 +39,6 @@ TOP_DIR="$(pwd)"
 . "$UTILS_DIR/check.sh"
 
 main() {
-    # Init options first.
-    ArgsInit
-
     # Check before install.
     Check
 
