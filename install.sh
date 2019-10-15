@@ -35,13 +35,10 @@ TOP_DIR="$(pwd)"
 # Load args for parsing command line options.
 . "$UTILS_DIR/args.sh"
 
-# Load checker.
+# Load and run checker.
 . "$UTILS_DIR/check.sh"
 
 main() {
-    # Check before install.
-    Check
-
     # Parse args.
     ArgsParse $@
 }

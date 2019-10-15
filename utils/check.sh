@@ -23,3 +23,6 @@ Check() {
     mkdir $BACKUP_DIR 1>/dev/null 2>&1
     mkdir $CACHE_DIR 1>/dev/null 2>&1
 }
+
+# Run checker as long as loading this file.
+Check
