@@ -38,10 +38,10 @@ TOP_DIR="$(pwd)"
 # Load and run checker.
 . "$UTILS_DIR/check.sh"
 
-main() {
+Main() {
     # Parse args.
-    ArgsParse $@
+    ArgsParse "$@"
 }
 
 # Run main function finally to install modules.
-main "$@"
+Main "$@"
