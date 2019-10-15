@@ -20,7 +20,7 @@
 #
 
 ArgsUsage() {
-LogInfo "./install.sh (OPTION)
+Log "./install.sh (OPTION)
 
 DESCRIPTION
     Install configs for some software to provide a better user experience.
